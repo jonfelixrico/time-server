@@ -4,14 +4,16 @@ FROM node:14-alpine As development
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
-RUN npm install pnpm -g
-RUN pnpm install --only=development
+RUN npm i -g pnpm
+RUN pnpm fetch
 
-COPY . .
+ADD . .
 
-RUN npm run build
+RUN pnpm install -r --offline
+
+RUN pnpm run build
 
 FROM node:14-alpine As production
 
@@ -20,11 +22,14 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
-RUN pnpm install --only=production
+RUN npm i -g pnpm
+RUN pnpm fetch --prod
 
-COPY . .
+ADD . .
+
+RUN pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
 
