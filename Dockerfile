@@ -1,5 +1,3 @@
-# From https://progressivecoder.com/how-to-create-a-multi-stage-nestjs-docker-deployment/
-
 FROM node:14-alpine As development
 
 WORKDIR /usr/src/app
