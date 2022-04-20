@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install pnpm -g
-RUN npm install --only=development
+RUN pnpm install --only=development
 
 COPY . .
 
@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --only=production
+RUN pnpm install --only=production
 
 COPY . .
 
