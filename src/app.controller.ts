@@ -6,6 +6,9 @@ const MINUTE_TO_SECOND_MULTIPLIER = 60
 
 @Controller()
 export class AppController {
+  /**
+   * Returns the local time (date not included), represented in seconds.
+   */
   @Get()
   getCurrentTimeInSeconds() {
     const { hour, minute, second } = DateTime.now()
