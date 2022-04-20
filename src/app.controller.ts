@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Header } from '@nestjs/common'
 import { DateTime } from 'luxon'
 
 const HOUR_TO_SECOND_MULTIPLIER = 3600
@@ -10,6 +10,7 @@ export class AppController {
    * Returns the local time (date not included), represented in seconds.
    */
   @Get()
+  @Header('Content-Type', 'text/plain')
   getCurrentTimeInSeconds() {
     const { hour, minute, second } = DateTime.now()
     return (
