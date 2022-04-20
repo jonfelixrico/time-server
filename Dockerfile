@@ -1,4 +1,4 @@
-FROM node:14-alpine As development
+FROM node:16-buster As development
 
 WORKDIR /usr/src/app
 
@@ -13,7 +13,7 @@ RUN pnpm install -r --offline
 
 RUN pnpm run build
 
-FROM node:14-alpine As production
+FROM node:16-buster As production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
