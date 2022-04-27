@@ -12,7 +12,7 @@ export class AppController {
   @Get()
   @Header('Content-Type', 'text/plain')
   getCurrentTimeInSeconds() {
-    const { hour, minute, second } = DateTime.now()
+    const { hour, minute, second } = DateTime.now().setZone('Asia/Manila')
     return (
       hour * HOUR_TO_SECOND_MULTIPLIER +
       minute * MINUTE_TO_SECOND_MULTIPLIER +
